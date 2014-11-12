@@ -1,15 +1,5 @@
 #include "StackExtended.h"
 
-
-StackExtended::StackExtended()
-{
-
-}
-
-StackExtended::~StackExtended()
-{
-}
-
 void StackExtended::clear()
 {
 	while (!empty())

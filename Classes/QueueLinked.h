@@ -7,11 +7,9 @@ class QueueLinked
 public:
 	QueueLinked();
 	QueueLinked(const QueueLinked &);
-	~QueueLinked();
 	QueueLinked& operator=(const QueueLinked &);
-	Node* getFront() const;
-	Node* getRear() const;
-
+	~QueueLinked();
+	
 	// Returns true if the QueueLinked is empty
 	// Otherwise returns false
 	bool empty() const;
@@ -23,7 +21,7 @@ public:
 	// Otherwise returns success
 	Error_code serve();
 	Error_code retrieve(Node_entry &);
-private:
+protected:
 	Node *front, *rear;
 };
 

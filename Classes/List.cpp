@@ -102,7 +102,7 @@ void List<List_entry>::testInput()
 {
 	cout << "Testing CLASS: List" << endl;
 	cout << "Test input is asked until terminated" << endl;
-	char input = 0;
+	char command[2];
 	int pos, action;
 	List_entry item, dummy;
 	while (true)
@@ -116,15 +116,17 @@ void List<List_entry>::testInput()
 			<< "\n[f]clear()"
 			<< "\n[Q]uit." << endl;
 
-		cin.get(input);
+		cin.getline(command, 2);
 
-		switch (input){
-		case 'a' :
-		case 'A' :
+		switch (command[0]){
+		case 'a':
+		case 'A':
 			cout << "input position: ";
-			cin >> pos;
+			cin.getline(command, 2);
+			pos = atoi(command);
 			cout << "input item: ";
-			cin >> item;
+			cin.getline(command, 2);
+			item = command[0];
 			action = insert(pos, item);
 			if (action == overflow)
 				cout << "List is full" << endl;
@@ -136,7 +138,8 @@ void List<List_entry>::testInput()
 		case 'b':
 		case 'B':
 			cout << "input position: ";
-			cin >> pos;
+			cin.getline(command, 2);
+			pos = atoi(command);
 			action = remove(pos, dummy);
 			if (action == underflow)
 				cout << "List is empty" << endl;
@@ -148,7 +151,8 @@ void List<List_entry>::testInput()
 		case 'c':
 		case 'C':
 			cout << "input position: ";
-			cin >> pos;
+			cin.getline(command, 2);
+			pos = atoi(command);
 			action = retrieve(pos, item);
 			if (action == range_error)
 				cout << "Invalid position" << endl;
@@ -158,9 +162,11 @@ void List<List_entry>::testInput()
 		case 'd':
 		case 'D':
 			cout << "input position: ";
-			cin >> pos;
+			cin.getline(command, 2);
+			pos = atoi(command);
 			cout << "input item: ";
-			cin >> item;
+			cin.getline(command, 2);
+			item = command[0];
 			action = replace(pos, item);
 			if (action == range_error)
 				cout << "Invalid position" << endl;
@@ -184,7 +190,5 @@ void List<List_entry>::testInput()
 			cout << "Error: invalid input" << endl;
 			break;
 		}
-		cin.clear();
-		cin.ignore();
 	}
 }

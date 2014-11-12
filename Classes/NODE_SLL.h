@@ -7,8 +7,7 @@ struct Node {
 	Node<Node_entry> *next;
 
 	//  constructors
-	Node();
-	// Muista kysyä opettajalta: miksi sijoitus "*link = NULL" ?? 
-	// Constructorin toiseen argumenttiin sijoitetaan NULL, jolloin se käytännössä menettää merkityksensä; miksi constructorilla ylipäätään on toinen argumentti?
-	Node(Node_entry item, Node<Node_entry> *link = NULL){ entry = item; next = link; };
+	Node(){ next = nullptr; };
+	Node(Node_entry item, Node<Node_entry> *link = nullptr){ entry = item; next = link; };
 };
+

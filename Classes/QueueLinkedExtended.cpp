@@ -1,10 +1,10 @@
 #include "QueueLinkedExtended.h"
-
+#include <new>
 
 bool QueueLinkedExtended::full() const
 {
 	Node_entry item = 0;
-	Node *new_rear = new Node(item);
+	Node *new_rear = new (std::nothrow)Node(item);
 	if (new_rear == NULL)
 		return true;
 
@@ -14,7 +14,7 @@ bool QueueLinkedExtended::full() const
 unsigned int QueueLinkedExtended::size() const
 {
 	unsigned int count = 0;
-	const Node* position = getFront();
+	const Node* position = front;
 	if (position == NULL) return 0;
 	while (position->next != NULL)
 	{

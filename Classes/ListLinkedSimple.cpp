@@ -1,5 +1,7 @@
 #include "ListLinkedSimple.h"
-
+#include <iostream>
+#include <new>
+using std::cout; using std::endl; using std::cin;
 template <class List_entry>
 ListLinkedSimple<List_entry>::ListLinkedSimple() : count_(0)
 {
@@ -7,17 +9,65 @@ ListLinkedSimple<List_entry>::ListLinkedSimple() : count_(0)
 template <class List_entry>
 ListLinkedSimple<List_entry>::ListLinkedSimple(const ListLinkedSimple<List_entry> &org)
 {
-	// TODO
+	Node<List_entry> *new_node = nullptr, *copy=nullptr, *original = org.head;
+
+	if (original != nullptr && !full())
+	{
+		head = new Node<List_entry>(original->entry, nullptr);
+		if (original->next != nullptr)
+		{
+			copy = new Node<List_entry>(original->next->entry, nullptr);
+			head->next = copy;
+
+			original = org.head;
+
+			while (original->next != nullptr)
+			{
+				original = original->next;
+				new_node = new Node<List_entry>(original->entry, nullptr);
+				copy->next = new_node;
+				copy = new_node;
+			}
+		}
+
+	}
+	count_ = org.count_;
 }
 template <class List_entry>
 ListLinkedSimple<List_entry>& ListLinkedSimple<List_entry>::operator=(const ListLinkedSimple<List_entry>&)
 {
-	// TODO
+	if (this != &source)
+	{
+		Node<List_entry> *new_node = nullptr, *copy = nullptr, *original = org.head;
+
+		if (original != nullptr && !full())
+		{
+			head = new Node<List_entry>(original->entry, nullptr);
+			if (original->next != nullptr)
+			{
+				copy = new Node<List_entry>(original->next->entry, nullptr);
+				head->next = copy;
+
+				original = org.head;
+
+				while (original->next != nullptr)
+				{
+					original = original->next;
+					new_node = new Node<List_entry>(original->entry, nullptr);
+					copy->next = new_node;
+					copy = new_node;
+				}
+			}
+
+		}
+		count_ = org.count_;
+	}
+	return *this;
 }
 template <class List_entry>
 ListLinkedSimple<List_entry>::~ListLinkedSimple()
 {
-	// TODO
+	clear();
 }
 
 template <class List_entry>
@@ -36,37 +86,80 @@ int ListLinkedSimple<List_entry>::size() const
 template <class List_entry>
 bool ListLinkedSimple<List_entry>::full() const
 {
-	// TODO
+	Node<List_entry> *temp = new (std::nothrow)Node<List_entry>;
+	if (temp == nullptr) return true;
+	delete temp;
+	return false;
 }
 template <class List_entry>
 bool ListLinkedSimple<List_entry>::empty() const
 {
-	// TODO
+	if (count_ == 0) return true;
+	return false;
 }
 template <class List_entry>
 void ListLinkedSimple<List_entry>::clear()
 {
-	// TODO
+	List_entry dummy;
+	while (!empty())
+		remove(0, dummy);
 }
 template <class List_entry>
 void ListLinkedSimple<List_entry>::traverse(void(*visit)(List_entry &))
 {
-	// TODO
+	if (count_ == 0) return;
+	Node<List_entry> *current = head;
+	while (current->next != nullptr)
+	{
+		(*visit)(current->entry);
+		current = current->next;
+	}
 }
 template <class List_entry>
 Error_code ListLinkedSimple<List_entry>::retrieve(int position, List_entry &x) const
 {
-	// TODO
+	if (position < 0 || position > count_-1)
+		return range_error;
+	Node<List_entry> *current;
+	current = set_position(position);
+	x = current->entry;
+	
+	return success;
 }
 template <class List_entry>
 Error_code ListLinkedSimple<List_entry>::replace(int position, const List_entry &x)
 {
-	// TODO
+	if (position < 0 || position > count_-1)
+		return range_error;
+	Node<List_entry> *current;
+	current = set_position(position);
+	current->entry = x;
+	return success;
 }
 template <class List_entry>
 Error_code ListLinkedSimple<List_entry>::remove(int position, List_entry &x)
 {
-	// TODO
+	if (position < 0 || position > count_-1)
+		return range_error;
+	if (count_ == 1)
+	{
+		delete head;
+		head = nullptr;
+		count_--;
+		return success;
+	}
+	Node<List_entry> *current;
+	current = set_position(position);
+
+	for (int i = position; i > count_ - 1; i++)
+	{
+		current->entry = current->next->entry;
+	}
+	delete current->next;
+	current->next = nullptr;
+	count_--;
+	return success;
+	
 }
 template <class List_entry>
 Error_code ListLinkedSimple<List_entry>::insert(int position, const List_entry &x)
@@ -79,14 +172,13 @@ Error_code ListLinkedSimple<List_entry>::insert(int position, const List_entry &
 		following = previous->next;
 	}
 	else{
-		previous = NULL;
+		previous = nullptr;
 		following = head;
 	}
 
-		
-	new_node = new Node<List_entry>(x, following);
-	if (new_node == NULL)
+	if (full())
 		return overflow;
+	new_node = new Node<List_entry>(x, following);
 	if (position == 0)
 		head = new_node;
 	else
@@ -106,7 +198,7 @@ void ListLinkedSimple<List_entry>::testInput()
 {
 	cout << "Testing CLASS: ListLinkedSimple" << endl;
 	cout << "Test input is asked until terminated" << endl;
-	char input = 0;
+	char command[2];
 	int pos, action;
 	List_entry item, dummy;
 	while (true)
@@ -120,15 +212,17 @@ void ListLinkedSimple<List_entry>::testInput()
 			<< "\n[f]clear()"
 			<< "\n[Q]uit." << endl;
 
-		cin.get(input);
+		cin.getline(command, 2);
 
-		switch (input){
+		switch (command[0]){
 		case 'a':
 		case 'A':
 			cout << "input position: ";
-			cin >> pos;
+			cin.getline(command, 2);
+			pos = atoi(command);
 			cout << "input item: ";
-			cin >> item;
+			cin.getline(command, 2);
+			item = command[0];
 			action = insert(pos, item);
 			if (action == overflow)
 				cout << "List is full" << endl;
@@ -140,7 +234,8 @@ void ListLinkedSimple<List_entry>::testInput()
 		case 'b':
 		case 'B':
 			cout << "input position: ";
-			cin >> pos;
+			cin.getline(command, 2);
+			pos = atoi(command);
 			action = remove(pos, dummy);
 			if (action == underflow)
 				cout << "List is empty" << endl;
@@ -152,7 +247,8 @@ void ListLinkedSimple<List_entry>::testInput()
 		case 'c':
 		case 'C':
 			cout << "input position: ";
-			cin >> pos;
+			cin.getline(command, 2);
+			pos = atoi(command);
 			action = retrieve(pos, item);
 			if (action == range_error)
 				cout << "Invalid position" << endl;
@@ -162,9 +258,11 @@ void ListLinkedSimple<List_entry>::testInput()
 		case 'd':
 		case 'D':
 			cout << "input position: ";
-			cin >> pos;
+			cin.getline(command, 2);
+			pos = atoi(command);
 			cout << "input item: ";
-			cin >> item;
+			cin.getline(command, 2);
+			item = command[0];
 			action = replace(pos, item);
 			if (action == range_error)
 				cout << "Invalid position" << endl;
@@ -179,6 +277,7 @@ void ListLinkedSimple<List_entry>::testInput()
 		case'F':
 			clear();
 			cout << "List has been cleared" << endl;
+			break;
 		case 'q':
 		case 'Q':
 			cout << "Quitting.." << endl;
@@ -187,7 +286,5 @@ void ListLinkedSimple<List_entry>::testInput()
 			cout << "Error: invalid input" << endl;
 			break;
 		}
-		cin.clear();
-		cin.ignore();
 	}
 }

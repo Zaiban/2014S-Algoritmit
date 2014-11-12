@@ -64,7 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ExtendedLinkedQueue.cpp" />
+    <ClCompile Include="QueueLinkedExtended.cpp" />
     <ClCompile Include="QueueExtended.cpp" />
     <ClCompile Include="StackExtended.cpp" />
     <ClCompile Include="QueueLinked.cpp" />
