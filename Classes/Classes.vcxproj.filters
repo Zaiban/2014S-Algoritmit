@@ -48,6 +48,9 @@
     <ClCompile Include="QueueLinkedExtended.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ListLinkedDouble.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NODE.H">
@@ -84,6 +87,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ListLinkedSimple.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NODE_DLL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ListLinkedDouble.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

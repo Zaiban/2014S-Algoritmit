@@ -1,193 +1,188 @@
-#include "ListLinkedSimple.h"
+#include "ListLinkedDouble.h"
 #include <iostream>
 #include <new>
 using std::cout; using std::endl; using std::cin;
 template <class List_entry>
-ListLinkedSimple<List_entry>::ListLinkedSimple() : count_(0)
+ListLinkedDouble<List_entry>::ListLinkedDouble() :count_(0), current_position_(0)
 {
 }
 template <class List_entry>
-ListLinkedSimple<List_entry>::ListLinkedSimple(const ListLinkedSimple<List_entry> &org)
+ListLinkedDouble<List_entry>::ListLinkedDouble(const ListLinkedDouble<List_entry> &org)
 {
-	Node<List_entry> *new_node = nullptr, *copy = nullptr, *original = org.head_;
-
+	Node<List_entry> *copy_position, *original;
+	org.set_position(0);
+	original = org.current_;
 	if (original != nullptr && !full())
 	{
-		head_ = new Node<List_entry>(original->entry, nullptr);
-		if (original->next != nullptr)
+		current_ = new Node<List_entry>(original->entry, nullptr);
+		current_position_ = 0;
+		copy_position = current_;
+		while (original->next != nullptr)
 		{
-			copy = new Node<List_entry>(original->next->entry, nullptr);
-			head_->next = copy;
-
-			original = org.head_;
-
-			while (original->next != nullptr)
-			{
-				original = original->next;
-				new_node = new Node<List_entry>(original->entry, nullptr);
-				copy->next = new_node;
-				copy = new_node;
-			}
+			copy_position->next = new Node<List_entry>(original->next->entry, copy_position, nullptr);
+			copy_position = copy_position->next;
+			original = original->next;
 		}
 
 	}
 	count_ = org.count_;
 }
 template <class List_entry>
-ListLinkedSimple<List_entry>& ListLinkedSimple<List_entry>::operator=(const ListLinkedSimple<List_entry> &source)
+ListLinkedDouble<List_entry>& ListLinkedDouble<List_entry>::operator=(const ListLinkedDouble<List_entry> &source)
 {
 	if (this != &source)
 	{
-		Node<List_entry> *copy_position, *original = source.head_;
-
+		Node<List_entry> *copy_position, *original;
+		source.set_position(0);
+		original = source.current_;
 		if (original != nullptr && !full())
 		{
-			head_ = new Node<List_entry>(original->entry, nullptr);
-			copy_position = head_;
+			current_ = new Node<List_entry>(original->entry, nullptr);
+			current_position_ = 0;
+			copy_position = current_;
 			while (original->next != nullptr)
 			{
-				copy_position->next = new Node<List_entry>(original->next->entry, nullptr);
+				copy_position->next = new Node<List_entry>(original->next->entry, copy_position, nullptr);
 				copy_position = copy_position->next;
 				original = original->next;
 			}
+
 		}
 		count_ = source.count_;
 	}
 	return *this;
 }
 template <class List_entry>
-ListLinkedSimple<List_entry>::~ListLinkedSimple()
+ListLinkedDouble<List_entry>::~ListLinkedDouble()
 {
-	clear();
+	//TO-DO
 }
 template <class List_entry>
-int ListLinkedSimple<List_entry>::size() const
+int ListLinkedDouble<List_entry>::size() const
 {
-	int count = 1;
-	const Node<List_entry>* position = head_;
+	int count_ = 1;
+	set_position(0);
+	const Node<List_entry>* position = current_;
 	if (position == nullptr) return 0;
 	while (position->next != nullptr)
 	{
-		count++;
+		count_++;
 		position = position->next;
 	}
-	return count;
+	return count_;
 }
 template <class List_entry>
-bool ListLinkedSimple<List_entry>::full() const
+bool ListLinkedDouble<List_entry>::full() const
 {
-	Node<List_entry> *temp = new (std::nothrow)Node < List_entry > ;
+	Node<List_entry> *temp = new (std::nothrow)Node<List_entry>;
 	if (temp == nullptr) return true;
 	delete temp;
 	return false;
 }
 template <class List_entry>
-bool ListLinkedSimple<List_entry>::empty() const
+bool ListLinkedDouble<List_entry>::empty() const
 {
 	if (count_ == 0) return true;
 	return false;
 }
 template <class List_entry>
-void ListLinkedSimple<List_entry>::clear()
+void ListLinkedDouble<List_entry>::clear()
 {
 	List_entry dummy;
 	while (!empty())
 		remove(0, dummy);
 }
 template <class List_entry>
-void ListLinkedSimple<List_entry>::traverse(void(*visit)(List_entry &))
+void ListLinkedDouble<List_entry>::traverse(void(*visit)(List_entry &))
 {
 	if (count_ == 0) return;
-	Node<List_entry> *current = head_;
-	while (current->next != nullptr)
+	set_position(0);
+	while (current_->next != nullptr)
 	{
-		(*visit)(current->entry);
-		current = current->next;
+		(*visit)(current_->entry);
+		current_ = current_->next;
 	}
 }
 template <class List_entry>
-Error_code ListLinkedSimple<List_entry>::retrieve(int position, List_entry &x) const
+Error_code ListLinkedDouble<List_entry>::retrieve(int position, List_entry &x) const
 {
 	if (position < 0 || position > count_ - 1)
 		return range_error;
-	Node<List_entry> *current;
-	current = set_position(position);
-	x = current->entry;
+	set_position(position);
+	x = current_->entry;
+	return success;
+}
+template <class List_entry>
+Error_code ListLinkedDouble<List_entry>::replace(int position, const List_entry &x)
+{
+	if (position < 0 || position > count_ - 1)
+		return range_error;
+	set_position(position);
+	current_->entry = x;
 
 	return success;
 }
 template <class List_entry>
-Error_code ListLinkedSimple<List_entry>::replace(int position, const List_entry &x)
-{
-	if (position < 0 || position > count_ - 1)
-		return range_error;
-	Node<List_entry> *current;
-	current = set_position(position);
-	current->entry = x;
-	return success;
-}
-template <class List_entry>
-Error_code ListLinkedSimple<List_entry>::remove(int position, List_entry &x)
+Error_code ListLinkedDouble<List_entry>::remove(int position, List_entry &x)
 {
 	if (position < 0 || position > count_ - 1)
 		return range_error;
 	if (count_ == 1)
 	{
-		x = head_->entry;
-		delete head_;
-		head_ = nullptr;
+		x = current_->entry;
+		delete current_;
+		current_ = nullptr;
+		current_position_ = 0;
 		count_ = 0;
 		return success;
 	}
-	Node<List_entry> *current;
-	current = set_position(position);
-	x = current->entry;
-	for (int i = position; i > count_ - 1; i++)
-	{
-		current->entry = current->next->entry;
-	}
-	delete current->next;
-	current->next = nullptr;
+	Node<List_entry> *previous, *following;
+	set_position(position);
+	previous = current_->back;
+	following = current_->next;
+	x = current_->entry;
+	delete current_;
+	current_ = following;
+	if (previous != nullptr)
+		previous->next = following;
+	if (following != nullptr)
+		following->back = previous;
+
 	count_--;
 	return success;
-
 }
 template <class List_entry>
-Error_code ListLinkedSimple<List_entry>::insert(int position, const List_entry &x)
+Error_code ListLinkedDouble<List_entry>::insert(int position, const List_entry &x)
 {
-	if (position < 0 || position > count_)
-		return range_error;
-	Node<List_entry> *new_node, *previous, *following;
-	if (position > 0) {
-		previous = set_position(position - 1);
-		following = previous->next;
+	Node<List_entry> *new_node, *following, *preceding;
+	if (position < 0 || position > count_) return range_error;
+	if (position == 0) {
+		if (count_ == 0) following = nullptr;
+		else {
+			set_position(0);
+			following = current_;
+		}
+		preceding = nullptr;
 	}
-	else{
-		previous = nullptr;
-		following = head_;
+	else {
+		set_position(position - 1);
+		preceding = current_;
+		following = preceding->next;
 	}
+	new_node = new Node<List_entry>(x, preceding, following);
 
-	if (full())
-		return overflow;
-	new_node = new Node<List_entry>(x, following);
-	if (position == 0)
-		head_ = new_node;
-	else
-		previous->next = new_node;
+	if (full()) return overflow;
+	if (preceding != nullptr) preceding->next = new_node;
+	if (following != nullptr) following->back = new_node;
+	current_ = new_node;
+	current_position_ = position;
 	count_++;
 	return success;
 }
 template <class List_entry>
-Node<List_entry> *ListLinkedSimple<List_entry>::set_position(int position) const
+void ListLinkedDouble<List_entry>::testInput()
 {
-	Node<List_entry> *q = head_;
-	for (int i = 0; i < position; i++) q = q->next;
-	return q;
-}
-template <class List_entry>
-void ListLinkedSimple<List_entry>::testInput()
-{
-	cout << "Testing CLASS: ListLinkedSimple" << endl;
+	cout << "Testing CLASS: ListLinkedDouble" << endl;
 	cout << "Test input is asked until terminated" << endl;
 	char command[2];
 	int pos, action;
@@ -278,4 +273,14 @@ void ListLinkedSimple<List_entry>::testInput()
 			break;
 		}
 	}
+}
+template <class List_entry>
+void ListLinkedDouble<List_entry>::set_position(int position) const
+{
+	if (current_position_ <= position)
+		for (; current_position_ != position; current_position_++)
+			current_ = current_->next;
+	else
+		for (; current_position_ != position; current_position_--)
+			current_ = current_->back;
 }

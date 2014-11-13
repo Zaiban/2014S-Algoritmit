@@ -1,15 +1,15 @@
 #pragma once
 #include "Utility.h"
-#include "NODE_SLL.h"
+#include "NODE_DLL.h"
 
 template <class List_entry>
-class ListLinkedSimple
+class ListLinkedDouble
 {
 public:
-	ListLinkedSimple();
-	ListLinkedSimple(const ListLinkedSimple<List_entry> &org);
-	ListLinkedSimple<List_entry>& operator=(const ListLinkedSimple<List_entry> &);
-	~ListLinkedSimple();
+	ListLinkedDouble();
+	ListLinkedDouble(const ListLinkedDouble<List_entry> &org);
+	ListLinkedDouble<List_entry>& operator=(const ListLinkedDouble<List_entry> &);
+	~ListLinkedDouble();
 	// The function returns the number of entries in the List
 	int size() const;
 	// The function returns true or false according to whether
@@ -30,8 +30,9 @@ public:
 
 protected:
 	int count_;
-	Node<List_entry> *head_;
+	mutable int current_position_;
+	mutable Node<List_entry> *current_;
 
-	Node<List_entry> *set_position(int position) const;
+	void set_position(int position) const;
 };
 

@@ -107,7 +107,7 @@ void List<List_entry>::testInput()
 	List_entry item, dummy;
 	while (true)
 	{
-		cout << "\nChoose what function to test " << endl
+		cout << "\nChoose what method to test " << endl
 			<< "\n[a]insert(position, item)"
 			<< "\n[b]remove(position)"
 			<< "\n[c]retrieve(position)"
