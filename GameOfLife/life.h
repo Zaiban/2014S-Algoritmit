@@ -16,8 +16,8 @@ public:
 
 private:
 	int grid[MAXROW][MAXCOL];
-	int maxrow_user;
-	int maxcol_user;
+	unsigned maxrow_user;
+	unsigned maxcol_user;
 
 	int neighbor_count(int row, int col);
 };

@@ -1,7 +1,9 @@
 #pragma once
-enum Runway_activity{ idle, land, takeoff };
+enum Runway_activity{ idle, land, takeoff, stub_ra };
 #include "Utility.h"
+#include "QueueLinked.h"
 #include "QueueLinkedExtended.h"
+#include "Plane.h"
 class Runway
 {
 public:

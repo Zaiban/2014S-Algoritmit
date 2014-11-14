@@ -198,7 +198,7 @@ void Postfix_calculator::askPrompt()
 
 	}
 	// Take and perform the commands out of the vector, one by one
-	for (int i = 0; i < commands.size(); i++)
+	for (unsigned i = 0; i < commands.size(); i++)
 	{
 		// Trim the last space out if it exists
 		commands.at(i).erase(commands.at(i).find_last_not_of(" ")+1);

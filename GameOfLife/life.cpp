@@ -9,7 +9,7 @@ void Life::initialize(int maxrow_input, int maxcol_input){
 	maxcol_user = maxcol_input;
 	std::string inputRow; // Saves the user input at initialization
 
-	int row, col;
+	unsigned row, col;
 	for (row = 0; row < MAXROW; row++)
 		for (col = 0; col < MAXCOL; col++)
 			grid[row][col] = 0;
@@ -24,7 +24,7 @@ void Life::initialize(int maxrow_input, int maxcol_input){
 		cout << "Input row " << row << ": ";	
 		std::getline(cin, inputRow); // Read the user input
 		if (inputRow.size() < maxcol_user) // Make sure inputRow is large enough
-			for (int i = inputRow.size(); i < maxcol_user; i++)
+			for (unsigned i = inputRow.size(); i < maxcol_user; i++)
 				inputRow.push_back(' ');
 		for (col = 0; col < maxcol_user; col++)
 		{
@@ -37,7 +37,7 @@ void Life::initialize(int maxrow_input, int maxcol_input){
 
 void Life::print(){
 
-	int row, col;
+	unsigned row, col;
 	cout << "\nThe current Life configuration is:" << endl;
 	for (row = 0; row < maxrow_user; row++){
 		for (col = 0; col < maxcol_user; col++)
@@ -50,7 +50,7 @@ void Life::print(){
 
 void Life::update(){
 
-	int row, col;
+	unsigned row, col;
 	int new_grid[MAXROW][MAXCOL];
 
 	for (row = 0; row < maxrow_user; row++)
@@ -126,7 +126,7 @@ bool Life::load()
 
 			if (answer == 'y')
 			{
-				int row, col;
+				unsigned row, col;
 				std::string rowString;
 
 				row = 0;

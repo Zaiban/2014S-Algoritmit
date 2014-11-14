@@ -27,4 +27,5 @@ void Plane::fly(int time) const
 int Plane::started() const
 {
 	//TO-DO
+	return -1;
 }

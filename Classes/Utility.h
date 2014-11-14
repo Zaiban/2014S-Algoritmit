@@ -5,7 +5,8 @@ enum Error_code{
 	success,
 	overflow,
 	underflow,
-	range_error
+	range_error,
+	stub_ec
 };
 
 #include <iostream>
