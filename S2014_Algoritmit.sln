@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameOfLife", "GameOfLife\Ga
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Classes", "Classes\Classes.vcxproj", "{45AA3F92-10CE-4757-813E-C80F607BF5E5}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AirportSimulator", "AirportSimulator\AirportSimulator.vcxproj", "{F2FD2F11-C2F7-40CC-8050-01EE747D3CC0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -27,6 +29,10 @@ Global
 		{45AA3F92-10CE-4757-813E-C80F607BF5E5}.Debug|Win32.Build.0 = Debug|Win32
 		{45AA3F92-10CE-4757-813E-C80F607BF5E5}.Release|Win32.ActiveCfg = Release|Win32
 		{45AA3F92-10CE-4757-813E-C80F607BF5E5}.Release|Win32.Build.0 = Release|Win32
+		{F2FD2F11-C2F7-40CC-8050-01EE747D3CC0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F2FD2F11-C2F7-40CC-8050-01EE747D3CC0}.Debug|Win32.Build.0 = Debug|Win32
+		{F2FD2F11-C2F7-40CC-8050-01EE747D3CC0}.Release|Win32.ActiveCfg = Release|Win32
+		{F2FD2F11-C2F7-40CC-8050-01EE747D3CC0}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
