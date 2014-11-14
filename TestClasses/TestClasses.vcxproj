@@ -11,9 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{8EB888B1-47AD-4AFD-87C5-2AF878CD25CF}</ProjectGuid>
-    <RootNamespace>lifepeli_2g</RootNamespace>
-    <ProjectName>GameOfLife</ProjectName>
+    <ProjectGuid>{FBC867F3-D2CA-4BE7-98F0-B3A647C85E3B}</ProjectGuid>
+    <RootNamespace>TestClasses</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -67,11 +66,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="life.cpp" />
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="life.h" />
+    <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyClassesLib\MyClassesLib.vcxproj">
