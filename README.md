@@ -1,3 +1,3 @@
 2014S-Algoritmit
 ================
-Viikkotehtävät->ClassDev
+Weeklies are in Classes project-directory
