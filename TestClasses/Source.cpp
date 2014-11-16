@@ -116,17 +116,32 @@ int main()
 	// SETTING 5: FOR QueueLinkedExtended.cpp
 
 
-	QueueLinkedExtended<char> test;
+QueueLinkedExtended<char> test, assigned;
 	char item;
 	test.append('a');
 	cout << "a appended" << endl;
 	test.append('k');
 	cout << "k appended" << endl;
+	QueueLinkedExtended<char> copy(test);
+	assigned = test;
 	test.retrieve(item);
-	cout << item << " retrieved before serve" << endl;
+	cout << item << " retrieved before serve from org" << endl;
 	test.serve();
 	test.retrieve(item);
-	cout << item << " retrieved after serve" << endl;
+	cout << item << " retrieved after serve from org" << endl;
+
+	assigned.retrieve(item);
+	cout << item << " retrieved before serve from assigned" << endl;
+	assigned.serve();
+	assigned.retrieve(item);
+	cout << item << " retrieved after serve from assigned" << endl;
+
+	copy.retrieve(item);
+	cout << item << " retrieved before serve from copy" << endl;
+	copy.serve();
+	copy.retrieve(item);
+	cout << item << " retrieved after serve from copy" << endl;
+
 
 
 	// SETTING 6: FOR StackLinked.cpp

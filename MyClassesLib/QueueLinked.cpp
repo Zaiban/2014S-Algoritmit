@@ -6,10 +6,14 @@ QueueLinked<Queue_entry>::QueueLinked() : front(nullptr), rear(nullptr)
 {
 }
 template <class Queue_entry>
-QueueLinked<Queue_entry>::QueueLinked(const QueueLinked &org)
+QueueLinked<Queue_entry>::QueueLinked(const QueueLinked<Queue_entry> &org)
 {
 	Node<Queue_entry> *new_copy, *original_node = org.front;
-	if (original_node == nullptr) front = nullptr;
+	if (original_node == nullptr)
+	{
+		front = nullptr;
+		rear = nullptr;
+	}
 	else {                         //  Duplicate the linked nodes.
 		front = new_copy = new Node<Queue_entry>(original_node->entry);
 		while (original_node->next != nullptr) {
@@ -18,7 +22,6 @@ QueueLinked<Queue_entry>::QueueLinked(const QueueLinked &org)
 			new_copy = new_copy->next;
 		}
 		rear = new Node<Queue_entry>(original_node->entry);
-
 	}
 }
 template <class Queue_entry>
@@ -59,7 +62,7 @@ bool QueueLinked<Queue_entry>::empty() const
 template <class Queue_entry>
 Error_code QueueLinked<Queue_entry>::append(const Queue_entry &item)
 {
-	Node<Queue_entry> *new_rear = new Node<Queue_entry>(item);
+	Node<Queue_entry> *new_rear = new Node<Queue_entry>(item, nullptr);
 	if (new_rear == nullptr) return overflow;
 	if (rear == nullptr) front = rear = new_rear;
 	else
