@@ -68,12 +68,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Airport.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="RANDOM.CPP" />
     <ClCompile Include="Runway.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Airport.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="RANDOM.H" />
     <ClInclude Include="Runway.h" />

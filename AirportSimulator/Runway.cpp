@@ -2,9 +2,10 @@
 #include <iostream>
 using std::cout; using std::endl;
 
-Runway::Runway(int limit)
+Runway::Runway(int limit, Runway_role role)
 {
 	queue_limit = limit;
+	role_ = role;
 	num_land_requests = num_takeoff_requests = 0;
 	num_landings = num_takeoffs = 0;
 	num_land_refused = num_takeoff_refused = 0;
@@ -13,7 +14,10 @@ Runway::Runway(int limit)
 }
 Runway::~Runway()
 {
-	//TO-DO
+}
+Runway_role Runway::getRole()
+{
+	return role_;
 }
 Error_code Runway::can_land(const Plane &current)
 {

@@ -1,5 +1,6 @@
 #pragma once
 enum Runway_activity{ idle, land, takeoff };
+enum Runway_role{ outgoing, incoming, both };
 #include "Utility.h"
 #include "QueueLinkedExtended.cpp"
 #include "Plane.h"
@@ -9,10 +10,12 @@ class Runway
 public:
 	/*
 	Post:  The Runway data members are initialized to record no
-	prior Runway use and to record the limit on queue sizes.
+	prior Runway use, to record the limit on queue sizes
+	and to give permissions for landing and takeoff.
 	*/
-	Runway(int limit);
+	Runway(int limit, Runway_role role);
 	~Runway();
+	Runway_role getRole();
 	/*
 	Post:  If possible, the Plane current is added to the
 	landing Queue; otherwise, an Error_code of overflow is
@@ -46,6 +49,7 @@ public:
 private:
 	QueueLinkedExtended<Plane> landingPlanes;
 	QueueLinkedExtended<Plane> takeoffPlanes;
+	Runway_role role_; // NEW! Added for 2 point work
 	unsigned queue_limit;
 	int num_land_requests;        //  number of planes asking to land
 	int num_takeoff_requests;     //  number of planes asking to take off

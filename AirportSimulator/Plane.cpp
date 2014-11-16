@@ -21,7 +21,6 @@ Plane::Plane(int flt, int time, Plane_status status)
 }
 Plane::~Plane()
 {
-	//TO-DO
 }
 void Plane::refuse() const
 {
