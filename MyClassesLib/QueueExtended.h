@@ -7,6 +7,7 @@
 #define MYCLASSESLIB_EXPORT //__declspec(dllimport)
 #endif
 
+
 class QueueExtended :
 	public Queue
 {

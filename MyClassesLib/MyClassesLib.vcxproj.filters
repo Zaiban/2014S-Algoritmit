@@ -45,12 +45,6 @@
     <ClInclude Include="ListLinkedSimple.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="NODE_DLL.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NODE_SLL.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Queue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -64,6 +58,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="QueueExtended.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NODE_DOUBLE.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -99,9 +96,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="QueueExtended.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Stack.cpp">

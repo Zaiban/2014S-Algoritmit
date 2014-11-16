@@ -1,6 +1,6 @@
 #pragma once
 #include "Utility.h"
-#include "NODE_DLL.h"
+#include "NODE_DOUBLE.h"
 
 #ifdef COMPILE_MYCLASSESLIB
 #define MYCLASSESLIB_EXPORT __declspec(dllexport)

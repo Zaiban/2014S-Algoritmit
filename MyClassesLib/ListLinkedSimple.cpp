@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "ListLinkedSimple.h"
-#include <iostream>
 #include <new>
 using std::cout; using std::endl; using std::cin;
 template <class List_entry>

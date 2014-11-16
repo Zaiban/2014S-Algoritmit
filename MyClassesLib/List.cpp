@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "List.h"
-#include <iostream>
 using std::cout; using std::cin; using std::endl;
 
 template <class List_entry>

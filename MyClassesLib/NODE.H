@@ -1,15 +1,13 @@
 ﻿#pragma once
 
-typedef char Node_entry;
-
-
+template <class Node_entry>
 struct Node {
 	//  data members
 	Node_entry entry;
-	Node *next;
+	Node<Node_entry> *next;
 
 	//  constructors
 	Node(){ next = nullptr; };
-	Node(Node_entry item, Node *link = nullptr){ entry = item; next = link; };
+	Node(Node_entry item, Node<Node_entry> *link = nullptr){ entry = item; next = link; };
 };
 

@@ -1,39 +1,41 @@
 #include "stdafx.h"
 #include "QueueLinked.h"
 
-
-QueueLinked::QueueLinked() : front(nullptr), rear(nullptr)
+template <class Queue_entry>
+QueueLinked<Queue_entry>::QueueLinked() : front(nullptr), rear(nullptr)
 {
 }
-QueueLinked::QueueLinked(const QueueLinked &org)
+template <class Queue_entry>
+QueueLinked<Queue_entry>::QueueLinked(const QueueLinked &org)
 {
-	Node *new_copy, *original_node = org.front;
+	Node<Queue_entry> *new_copy, *original_node = org.front;
 	if (original_node == nullptr) front = nullptr;
 	else {                         //  Duplicate the linked nodes.
-		front = new_copy = new Node(original_node->entry);
+		front = new_copy = new Node<Queue_entry>(original_node->entry);
 		while (original_node->next != nullptr) {
 			original_node = original_node->next;
-			new_copy->next = new Node(original_node->entry);
+			new_copy->next = new Node<Queue_entry>(original_node->entry);
 			new_copy = new_copy->next;
 		}
-		rear = new Node(original_node->entry);
+		rear = new Node<Queue_entry>(original_node->entry);
 
 	}
 }
-QueueLinked& QueueLinked::operator=(const QueueLinked &source)
+template <class Queue_entry>
+QueueLinked<Queue_entry>& QueueLinked<Queue_entry>::operator=(const QueueLinked<Queue_entry> &source)
 {
-	Node *new_top, *new_copy, *original_node = source.front;
+	Node<Queue_entry> *new_top, *new_copy, *original_node = source.front;
 	if (original_node == nullptr) new_top = nullptr;
 	else
 	{
-		new_copy = new_top = new Node(original_node->entry);
+		new_copy = new_top = new Node<Queue_entry>(original_node->entry);
 		while (original_node->next != nullptr)
 		{
 			original_node = original_node->next;
-			new_copy->next = new Node(original_node->entry);
+			new_copy->next = new Node<Queue_entry>(original_node->entry);
 			new_copy = new_copy->next;
 		}
-		rear = new Node(original_node->entry);
+		rear = new Node<Queue_entry>(original_node->entry);
 	}
 	while (!empty())
 		serve();
@@ -41,21 +43,23 @@ QueueLinked& QueueLinked::operator=(const QueueLinked &source)
 
 	return *this;
 }
-QueueLinked::~QueueLinked()
+template <class Queue_entry>
+QueueLinked<Queue_entry>::~QueueLinked()
 {
 	while (!empty())
 		serve();
 }
-
-bool QueueLinked::empty() const
+template <class Queue_entry>
+bool QueueLinked<Queue_entry>::empty() const
 {
 	if (front == nullptr)
 		return true;
 	return false;
 }
-Error_code QueueLinked::append(const Node_entry &item)
+template <class Queue_entry>
+Error_code QueueLinked<Queue_entry>::append(const Queue_entry &item)
 {
-	Node *new_rear = new Node(item);
+	Node<Queue_entry> *new_rear = new Node<Queue_entry>(item);
 	if (new_rear == nullptr) return overflow;
 	if (rear == nullptr) front = rear = new_rear;
 	else
@@ -65,16 +69,18 @@ Error_code QueueLinked::append(const Node_entry &item)
 	}
 	return success;
 }
-Error_code QueueLinked::serve()
+template <class Queue_entry>
+Error_code QueueLinked<Queue_entry>::serve()
 {
 	if (front == nullptr) return underflow;
-	Node *old_front = front;
+	Node<Queue_entry> *old_front = front;
 	front = old_front->next;
 	if (front == nullptr) rear = nullptr;
 	delete old_front;
 	return success;
 }
-Error_code QueueLinked::retrieve(Node_entry &item)
+template <class Queue_entry>
+Error_code QueueLinked<Queue_entry>::retrieve(Queue_entry &item)
 {
 	if (front == nullptr) return underflow;
 	item = front->entry;

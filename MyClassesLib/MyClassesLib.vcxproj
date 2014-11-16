@@ -83,8 +83,7 @@
     <ClInclude Include="ListLinkedDouble.h" />
     <ClInclude Include="ListLinkedSimple.h" />
     <ClInclude Include="NODE.H" />
-    <ClInclude Include="NODE_DLL.h" />
-    <ClInclude Include="NODE_SLL.h" />
+    <ClInclude Include="NODE_DOUBLE.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="QueueExtended.h" />
     <ClInclude Include="QueueLinked.h" />
@@ -113,7 +112,6 @@
     <ClCompile Include="QueueExtended.cpp" />
     <ClCompile Include="QueueLinked.cpp" />
     <ClCompile Include="QueueLinkedExtended.cpp" />
-    <ClCompile Include="Source.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="StackExtended.cpp" />
     <ClCompile Include="StackLinked.cpp" />

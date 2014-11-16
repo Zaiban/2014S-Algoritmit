@@ -1,5 +1,5 @@
 #pragma once
-#include "QueueLinked.h"
+#include "QueueLinked.cpp"
 
 #ifdef COMPILE_MYCLASSESLIB
 #define MYCLASSESLIB_EXPORT __declspec(dllexport)
@@ -7,8 +7,9 @@
 #define MYCLASSESLIB_EXPORT //__declspec(dllimport)
 #endif
 
+template <class Queue_entry>
 class MYCLASSESLIB_EXPORT QueueLinkedExtended :
-	public QueueLinked
+	public QueueLinked<Queue_entry>
 {
 public:
 	// POST: Return true if the ExtendedLinkedQueue is full, return false
@@ -22,7 +23,7 @@ public:
 	// Return underflow if the ExtendedLinkedQueue is empty. Otherwise remove
 	// and copy the item at the front of the Extended_queue to item and
 	// return success.
-	Error_code serve_and_retrieve(Node_entry &);
+	Error_code serve_and_retrieve(Queue_entry &);
 
 };
 

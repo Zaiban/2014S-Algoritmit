@@ -9,10 +9,10 @@
 
 enum MYCLASSESLIB_EXPORT Error_code{
 	success,
+	fail,
 	overflow,
 	underflow,
-	range_error,
-	stub_ec
+	range_error
 };
 
 #include <iostream>

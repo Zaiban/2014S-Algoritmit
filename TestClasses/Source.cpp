@@ -1,20 +1,20 @@
-#include "List.cpp"
+#include "QueueLinkedExtended.cpp"
 #include <iostream>
 #include <string>
 using std::cout; using std::endl;
 
 int main()
 {
-	// There are 3 test settings for each of "List.cpp", "ListLinkedSimple.cpp", "ListLinkedDouble.cpp"
+	// There are different settings for testing each class
 	// Uncomment ONLY one of the following settings at time 
 	// (depending on what class you have currently #included):
 
 	// SETTING 1: FOR List.cpp
 	
-
+	/*
 	List<char> test;
 	test.testInput();
-	
+	*/
 	
 	//SETTING 2: FOR ListLinkedSIMPLE.cpp
 
@@ -95,6 +95,50 @@ int main()
 		}
 		else if (choose == "q") break;
 	}
+	*/
+
+	// SETTING 4: FOR QueueLinked.cpp
+
+	/*
+	QueueLinked<char> test;
+	char item;
+	test.append('a'); 
+	cout << "a appended" << endl;
+	test.append('k'); 
+	cout << "k appended" << endl;
+	test.retrieve(item);
+	cout << item << " retrieved before serve" << endl;
+	test.serve();
+	test.retrieve(item);
+	cout << item << " retrieved after serve" << endl;
+	*/
+
+	// SETTING 5: FOR QueueLinkedExtended.cpp
+
+
+	QueueLinkedExtended<char> test;
+	char item;
+	test.append('a');
+	cout << "a appended" << endl;
+	test.append('k');
+	cout << "k appended" << endl;
+	test.retrieve(item);
+	cout << item << " retrieved before serve" << endl;
+	test.serve();
+	test.retrieve(item);
+	cout << item << " retrieved after serve" << endl;
+
+
+	// SETTING 6: FOR StackLinked.cpp
+
+	/*
+	StackLinked<char> test;
+	char item;
+	test.push('a'); cout << "a pushed" << endl;
+	test.push('k'); cout << "k pushed" << endl;
+	test.top(item); cout << item << " on top before pop" << endl;
+	test.pop();
+	test.top(item); cout << item << " on top after pop" << endl;
 	*/
 
 
