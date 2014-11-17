@@ -354,3 +354,31 @@ Koska jonon pituutta ei ole mahdollista laskea alle arvon 1, ei jatkotoimenpitei
 Testi katsotaan paattyneeksi.
 
 =================2. PISTEEN TYÖ=================
+Testi 3: Seuraavan kriittisen pisteen hakeminen
+
+=Yhteiset asetukset=
+-Jonon pituus: 20
+-Aikayksikoiden maara: 100
+=Tavoitteet=
+Hylattyjen koneiden kokonaismaara vahemman kuin kymmenesosa koneiden kokonaismaarasta.
+Joutokayntiaika alle 5%.
+Simulaation loputtua saapuvien seka lahtevien koneiden jonot molemmat alle 10 kappaletta.
+
+#case1
+=Asetukset=
+Saapumiestiheys: 0.52
+Lahtemistiheys: 0.53
+=Tulokset=
+
+
+=Analysointi=
+Saapuvia koneita oli X kpl ja niista hylattiin X kpl. 		--
+Lahtevia koneita oli X kpl ja niista hylattiin X kpl. 		--
+Joutokayntiaika oli X%. 									--
+Lopussa saapuvien koneiden jono oli X kpl 					--
+Lopussa lahtevien koneiden jono oli X kpl					--
+
+=Paatelmat=
+
+
+=Toimenpiteet=

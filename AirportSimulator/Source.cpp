@@ -132,7 +132,7 @@ void test_2()
 
 	for (int current_time = 0; current_time < end_time; current_time++) { //  loop over time intervals
 
-		while (small_airport.roleOfSelection() != incoming)
+		while (small_airport.roleOfSelection() != incoming) // select the runway for incoming flights
 			small_airport.selectNext();
 		int number_arrivals = variable.poisson(arrival_rate);  //  current arrival requests
 		for (int i = 0; i < number_arrivals; i++) {
@@ -141,7 +141,7 @@ void test_2()
 				current_plane.refuse();
 		}
 
-		while (small_airport.roleOfSelection() != outgoing)
+		while (small_airport.roleOfSelection() != outgoing) // select the runway for outgoing flights
 			small_airport.selectNext();
 		int number_departures = variable.poisson(departure_rate); //  current departure requests
 		for (int j = 0; j < number_departures; j++) {
