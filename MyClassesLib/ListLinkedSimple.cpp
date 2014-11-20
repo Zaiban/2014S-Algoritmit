@@ -9,25 +9,17 @@ ListLinkedSimple<List_entry>::ListLinkedSimple() : count_(0)
 template <class List_entry>
 ListLinkedSimple<List_entry>::ListLinkedSimple(const ListLinkedSimple<List_entry> &org)
 {
-	Node<List_entry> *new_node = nullptr, *copy = nullptr, *original = org.head_;
-
+	Node<List_entry> *copy_position, *original;
+	original = org.head_;
 	if (original != nullptr && !full())
 	{
 		head_ = new Node<List_entry>(original->entry, nullptr);
-		if (original->next != nullptr)
+		copy_position = head_;
+		while (original->next != nullptr)
 		{
-			copy = new Node<List_entry>(original->next->entry, nullptr);
-			head_->next = copy;
-
-			original = org.head_;
-
-			while (original->next != nullptr)
-			{
-				original = original->next;
-				new_node = new Node<List_entry>(original->entry, nullptr);
-				copy->next = new_node;
-				copy = new_node;
-			}
+			copy_position->next = new Node<List_entry>(original->next->entry, copy_position);
+			copy_position = copy_position->next;
+			original = original->next;
 		}
 
 	}
@@ -139,15 +131,15 @@ Error_code ListLinkedSimple<List_entry>::remove(int position, List_entry &x)
 		count_ = 0;
 		return success;
 	}
-	Node<List_entry> *current;
-	current = set_position(position);
+	Node<List_entry> *previous, *current, *following;
+	previous = set_position(position - 1);
+	current = previous->next;
+	following = current->next;
 	x = current->entry;
-	for (int i = position; i > count_ - 1; i++)
-	{
-		current->entry = current->next->entry;
-	}
-	delete current->next;
-	current->next = nullptr;
+	delete current;
+	if (previous != nullptr)
+		previous->next = following;
+ 
 	count_--;
 	return success;
 

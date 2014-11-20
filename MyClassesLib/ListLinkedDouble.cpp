@@ -55,7 +55,7 @@ ListLinkedDouble<List_entry>& ListLinkedDouble<List_entry>::operator=(const List
 template <class List_entry>
 ListLinkedDouble<List_entry>::~ListLinkedDouble()
 {
-	//TO-DO
+	clear();
 }
 template <class List_entry>
 int ListLinkedDouble<List_entry>::size() const
@@ -154,8 +154,8 @@ Error_code ListLinkedDouble<List_entry>::remove(int position, List_entry &x)
 template <class List_entry>
 Error_code ListLinkedDouble<List_entry>::insert(int position, const List_entry &x)
 {
-	Node<List_entry> *new_node, *following, *preceding;
 	if (position < 0 || position > count_) return range_error;
+	Node<List_entry> *new_node, *following, *preceding;
 	if (position == 0) {
 		if (count_ == 0) following = nullptr;
 		else {
@@ -178,6 +178,16 @@ Error_code ListLinkedDouble<List_entry>::insert(int position, const List_entry &
 	current_position_ = position;
 	count_++;
 	return success;
+}
+template <class List_entry>
+void ListLinkedDouble<List_entry>::set_position(int position) const
+{
+	if (current_position_ <= position)
+		for (; current_position_ != position; current_position_++)
+			current_ = current_->next;
+	else
+		for (; current_position_ != position; current_position_--)
+			current_ = current_->back;
 }
 template <class List_entry>
 void ListLinkedDouble<List_entry>::testInput()
@@ -273,14 +283,4 @@ void ListLinkedDouble<List_entry>::testInput()
 			break;
 		}
 	}
-}
-template <class List_entry>
-void ListLinkedDouble<List_entry>::set_position(int position) const
-{
-	if (current_position_ <= position)
-		for (; current_position_ != position; current_position_++)
-			current_ = current_->next;
-	else
-		for (; current_position_ != position; current_position_--)
-			current_ = current_->back;
 }

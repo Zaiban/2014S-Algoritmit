@@ -1,10 +1,11 @@
-#include "QueueLinkedExtended.cpp"
+#include "ListLinkedSIMPLE.cpp"
 #include <iostream>
 #include <string>
-using std::cout; using std::endl;
+using std::cout; using std::endl; using std::string;
 
 int main()
 {
+	string choose;
 	// There are different settings for testing each class
 	// Uncomment ONLY one of the following settings at time 
 	// (depending on what class you have currently #included):
@@ -18,7 +19,7 @@ int main()
 	
 	//SETTING 2: FOR ListLinkedSIMPLE.cpp
 
-	/*
+	
 	while (true)
 	{
 		cout << "\nType: 'c' for testing constructors"
@@ -54,7 +55,7 @@ int main()
 		}
 		else if(choose == "q") break;
 	}
-	*/
+	
 
 
 	// SETTING 3: FOR ListLinkedDOUBLE.cpp 
@@ -115,7 +116,7 @@ int main()
 
 	// SETTING 5: FOR QueueLinkedExtended.cpp
 
-
+/*
 QueueLinkedExtended<char> test, assigned;
 	char item;
 	test.append('a');
@@ -141,7 +142,7 @@ QueueLinkedExtended<char> test, assigned;
 	copy.serve();
 	copy.retrieve(item);
 	cout << item << " retrieved after serve from copy" << endl;
-
+	*/
 
 
 	// SETTING 6: FOR StackLinked.cpp
