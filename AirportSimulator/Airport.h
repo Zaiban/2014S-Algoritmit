@@ -22,6 +22,10 @@ public:
 	void selectNext();
 	// Return the role of currently selected runway
 	Runway_role roleOfSelection();
+	// Return the size of current incoming queue for the selected runway
+	unsigned sizeOfIncomingQueueForSelection();
+	// Return the size of current outgoing queue for the selected runway
+	unsigned sizeOfOutgoingQueueForSelection();
 
 private:
 	std::vector<Runway> runways;

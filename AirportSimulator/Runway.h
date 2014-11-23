@@ -45,6 +45,10 @@ public:
 	Post: Runway usage statistics are summarized and printed.
 	*/
 	void shut_down(int time) const;
+	// Return the size of current incoming queue for the runway
+	unsigned sizeOfIncomingQueue();
+	// Return the size of current outgoing queue for the runway
+	unsigned sizeOfOutoingQueue();
 
 protected:
 	QueueLinkedExtended<Plane> landingPlanes;

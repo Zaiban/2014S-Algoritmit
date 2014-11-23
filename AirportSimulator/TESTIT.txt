@@ -607,3 +607,166 @@ Kuitenkaan tehtävänannossa ei sitä pyydetä, ja uskon tulosten olevan nykyise
 
 =Toimenpiteet=
 Halutut arvot saavutettu, testikeissi päätetään.
+
+=================3. PISTEEN TYÖ=================
+Testi 4: Seuraavan kriittisen pisteen hakeminen
+
+=Yhteiset asetukset=
+-Jonon pituus: 20
+-Aikayksikoiden maara: 100
+=Tavoitteet=
+Hylattyjen koneiden kokonaismaara vahemman kuin kymmenesosa koneiden kokonaismaarasta. (per kiitorata)
+Joutokayntiaika 5% tai vähemmän.
+Simulaation loputtua saapuvien seka lahtevien koneiden jonot molemmat alle 10 kappaletta. (per kiitorata)
+
+#case1
+=Asetukset=
+Saapumiestiheys: 0.98
+Lahtemistiheys: 0.98
+=Tulokset=
+Runway number 1.Simulation has concluded after 100 time units.
+Total number of planes processed 107
+Total number of planes asking to land 84
+Total number of planes asking to take off 23
+Total number of planes accepted for landing 84
+Total number of planes accepted for takeoff 23
+Total number of planes refused for landing 0
+Total number of planes refused for takeoff 0
+Total number of planes that landed 84
+Total number of planes that took off 13
+Total number of planes left in landing queue 0
+Total number of planes left in takeoff queue 10
+Percentage of time runway idle 3%
+Average wait in landing queue 1.21429 time units
+Average wait in takeoff queue 9.23077 time units
+Average observed rate of planes wanting to land 0.84 per time unit
+Average observed rate of planes wanting to take off 0.23 per time uni
+
+Runway number 2.Simulation has concluded after 100 time units.
+Total number of planes processed 92
+Total number of planes asking to land 12
+Total number of planes asking to take off 80
+Total number of planes accepted for landing 12
+Total number of planes accepted for takeoff 80
+Total number of planes refused for landing 0
+Total number of planes refused for takeoff 0
+Total number of planes that landed 12
+Total number of planes that took off 80
+Total number of planes left in landing queue 0
+Total number of planes left in takeoff queue 0
+Percentage of time runway idle 8%
+Average wait in landing queue 0.416667 time units
+Average wait in takeoff queue 3.2125 time units
+Average observed rate of planes wanting to land 0.12 per time unit
+Average observed rate of planes wanting to take off 0.8 per time unit
+
+=Analysointi=
+
+Runway 1: (yleensä saapuvat lennot)
+Saapuvia koneita oli 84 kpl ja niista hylattiin 0 kpl. 		--Hyväksytty
+Lahtevia koneita oli 23 kpl ja niista hylattiin 0 kpl. 		--Hyväksytty
+Joutokayntiaika oli 3%. 									--Hyväksytty
+Lopussa saapuvien koneiden jono oli 0 kpl 					--Hyväksytty
+Lopussa lahtevien koneiden jono oli 10 kpl					--Hylätty
+
+Runway 2: (yleensä lähtevät lennot)
+Saapuvia koneita oli 12 kpl ja niista hylattiin 0 kpl. 		--Hyväksytty
+Lahtevia koneita oli 80 kpl ja niista hylattiin 0 kpl. 		--Hyväksytty
+Joutokayntiaika oli 8%. 									--Hylätty
+Lopussa saapuvien koneiden jono oli 0 kpl 					--Hyväksytty
+Lopussa lahtevien koneiden jono oli 0 kpl					--Hyväksytty
+
+=Paatelmat=
+Uuden koodin paremmuus testi 3:n tuloksiin verrattuna on huomattava. Tämän vuoksi Runway 2 joutokäyntiaika on noussut 8:aan prosenttiin.
+Kuitenkin koodi tekee edelleen sitä mitä se on tehnyt alusta asti, eli suosii saapuvia koneita. Tämän vuoksi Runway 1:n saapuvien koneiden jonoon
+jää 10 kappaletta koneita.
+
+=Toimenpiteet=
+Nostetaan saapumistiheyttä ja lasketaan lähtemistiheyttä hiukan.
+
+#caseX
+=Asetukset=
+Saapumiestiheys: 1.15
+Lahtemistiheys: 0.95
+=Tulokset=
+Runway number 1.Simulation has concluded after 100 time units.
+Total number of planes processed 109
+Total number of planes asking to land 102
+Total number of planes asking to take off 7
+Total number of planes accepted for landing 102
+Total number of planes accepted for takeoff 7
+Total number of planes refused for landing 0
+Total number of planes refused for takeoff 0
+Total number of planes that landed 93
+Total number of planes that took off 5
+Total number of planes left in landing queue 9
+Total number of planes left in takeoff queue 2
+Percentage of time runway idle 2%
+Average wait in landing queue 4.78495 time units
+Average wait in takeoff queue 18.2 time units
+Average observed rate of planes wanting to land 1.02 per time unit
+Average observed rate of planes wanting to take off 0.07 per time unit
+
+Runway number 2.Simulation has concluded after 100 time units.
+Total number of planes processed 102
+Total number of planes asking to land 6
+Total number of planes asking to take off 96
+Total number of planes accepted for landing 6
+Total number of planes accepted for takeoff 96
+Total number of planes refused for landing 0
+Total number of planes refused for takeoff 0
+Total number of planes that landed 6
+Total number of planes that took off 92
+Total number of planes left in landing queue 0
+Total number of planes left in takeoff queue 4
+Percentage of time runway idle 2%
+Average wait in landing queue 0.666667 time units
+Average wait in takeoff queue 3.17391 time units
+Average observed rate of planes wanting to land 0.06 per time unit
+Average observed rate of planes wanting to take off 0.96 per time unit
+
+=Analysointi=
+
+Runway 1: (yleensä saapuvat lennot)
+Saapuvia koneita oli 102 kpl ja niista hylattiin 0 kpl. 	--Hyväksytty
+Lahtevia koneita oli 7 kpl ja niista hylattiin 0 kpl. 		--Hyväksytty
+Joutokayntiaika oli 2%. 									--Hyväksytty
+Lopussa saapuvien koneiden jono oli 9 kpl 					--Hyväksytty
+Lopussa lahtevien koneiden jono oli 2 kpl					--Hyväksytty
+
+Runway 2: (yleensä lähtevät lennot)
+Saapuvia koneita oli 6 kpl ja niista hylattiin 0 kpl. 		--Hyväksytty
+Lahtevia koneita oli 96 kpl ja niista hylattiin 0 kpl. 		--Hyväksytty
+Joutokayntiaika oli 2%. 									--Hyväksytty
+Lopussa saapuvien koneiden jono oli 0 kpl 					--Hyväksytty
+Lopussa lahtevien koneiden jono oli 4 kpl					--Hyväksytty
+
+=Paatelmat=
+Uusilla arvoilla kaikki testit menevät läpi. Kuitenkin niin niukasti,
+että jatkotoimenpiteet tuskin antavat merkittävää hyötyä.
+
+=Toimenpiteet=
+Halutut arvot saavutettu, testikeissi päätetään.
+
+#caseX
+=Asetukset=
+Saapumiestiheys: XX
+Lahtemistiheys: XX
+=Tulokset=
+=Analysointi=
+
+Runway 1: (yleensä saapuvat lennot)
+Saapuvia koneita oli XX kpl ja niista hylattiin X kpl. 		--
+Lahtevia koneita oli XX kpl ja niista hylattiin X kpl. 		--
+Joutokayntiaika oli X%. 									--
+Lopussa saapuvien koneiden jono oli XX kpl 					--
+Lopussa lahtevien koneiden jono oli XX kpl					--
+
+Runway 2: (yleensä lähtevät lennot)
+Saapuvia koneita oli XX kpl ja niista hylattiin X kpl. 		--
+Lahtevia koneita oli XX kpl ja niista hylattiin X kpl. 		--
+Joutokayntiaika oli X%. 									--
+Lopussa saapuvien koneiden jono oli X kpl 					--
+Lopussa lahtevien koneiden jono oli X kpl					--
+=Paatelmat=
+=Toimenpiteet=

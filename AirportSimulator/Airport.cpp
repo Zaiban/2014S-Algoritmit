@@ -49,3 +49,11 @@ Runway_role Airport::roleOfSelection()
 {
 	return runways.at(currentSelection).getRole();
 }
+unsigned Airport::sizeOfIncomingQueueForSelection()
+{
+	return runways.at(currentSelection).sizeOfIncomingQueue();
+}
+unsigned Airport::sizeOfOutgoingQueueForSelection()
+{
+	return runways.at(currentSelection).sizeOfOutoingQueue();
+}

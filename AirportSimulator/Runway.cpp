@@ -114,3 +114,11 @@ void Runway::shut_down(int time) const
 		<< ((float)num_takeoff_requests) / ((float)time)
 		<< " per time unit" << endl;
 }
+unsigned Runway::sizeOfIncomingQueue()
+{
+	return landingPlanes.size();
+}
+unsigned Runway::sizeOfOutoingQueue()
+{
+	return takeoffPlanes.size();
+}
