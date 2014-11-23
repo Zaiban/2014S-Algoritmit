@@ -6,20 +6,23 @@ using std::cin; using std::endl; using std::cout; using std::flush; using std::c
 void run_idle(int time);
 void initialize(int &end_time, int &queue_limit, double &arrival_rate, double &departure_rate);
 
-// Selects the next runway that is flagged either incoming or both
+// Selects the next runway that is flagged incoming
 void selectNextIncoming(Airport &airport);
-// Selects the next runway that is flagged either outoing or both
+// Selects the next runway that is flagged outoing
 void selectNextOutgoing(Airport &airport);
+// Selects the next runway that is flagged both
+void selectNextBoth(Airport &airport);
 
 void test_1();
 void test_2();
 void test_3();
+void test_4();
 
 int main()
 {
 	char command[2];
 
-	cout << "Type the number of the test program(1, 2, 3)" << endl;
+	cout << "Type the number of the test program(1, 2, 3, 4)" << endl;
 	cin.getline(command, 2);
 
 	switch (command[0]){
@@ -32,10 +35,13 @@ int main()
 	case '3':
 		test_3();
 		break;
+	case '4':
+		test_4();
+		break;
 	};
 
 
-	
+
 
 
 	system("pause");
@@ -84,19 +90,23 @@ void initialize(int &end_time, int &queue_limit,
 			acceptable = true;
 
 		//if (acceptable && arrival_rate + departure_rate > 1.0)
-			//cerr << "Safety Warning: This airport will become saturated. " << endl;
+		//cerr << "Safety Warning: This airport will become saturated. " << endl;
 
 	} while (!acceptable);
 }
 void selectNextIncoming(Airport &airport)
 {
-	while (airport.roleOfSelection() != incoming && airport.roleOfSelection() != both)
+	while (airport.roleOfSelection() != incoming)
 		airport.selectNext();
 }
-
 void selectNextOutgoing(Airport &airport)
 {
-	while (airport.roleOfSelection() != outgoing && airport.roleOfSelection() != both)
+	while (airport.roleOfSelection() != outgoing)
+		airport.selectNext();
+}
+void selectNextBoth(Airport &airport)
+{
+	while (airport.roleOfSelection() != both)
 		airport.selectNext();
 }
 void test_1()
@@ -238,7 +248,7 @@ void test_3()
 			else
 			{
 				// If outgoing runway has no queue AND incoming runway has some queue, redirect plane to outgoing runway
-				if (outgoing_empty && !incoming_empty) 
+				if (outgoing_empty && !incoming_empty)
 					selectNextOutgoing(small_airport);
 				// Else direct plane to incoming runway
 				else
@@ -274,6 +284,92 @@ void test_3()
 				if (small_airport.can_depart(current_plane) != success)
 					current_plane.refuse();
 			}
+		}
+
+		Plane moving_plane[RUNWAYS];
+		for (int i = 0; i < RUNWAYS; i++)
+		{
+			switch (small_airport.activity(current_time, moving_plane[i])) {
+				//  Let at most one Plane onto the Runway at current_time.
+			case land:
+				moving_plane[i].land(current_time);
+				break;
+			case takeoff:
+				moving_plane[i].fly(current_time);
+				break;
+			case idle:
+				run_idle(current_time);
+			}
+			small_airport.selectNext();
+		}
+
+	}
+	small_airport.shut_down(end_time);
+}
+void test_4()
+{
+	const int RUNWAYS = 3;
+	int end_time;            //  time to run simulation
+	int queue_limit;         //  size of Runway queues
+	int flight_number = 0;
+	double arrival_rate, departure_rate;
+	initialize(end_time, queue_limit, arrival_rate, departure_rate);
+	Random variable(true);
+	Airport small_airport(queue_limit, both);
+	small_airport.addRunway(queue_limit, incoming);
+	small_airport.addRunway(queue_limit, outgoing);
+	// Make both take a plane only every second turn, to balance the load
+	bool both_turn=false;
+	// If true, both will stop taking incoming flights
+	bool both_incoming_limit;
+	// If true, both will start taking outgoing flights
+	bool both_incoming_empty;
+
+	for (int current_time = 0; current_time < end_time; current_time++) { //  loop over time intervals
+
+		if (both_turn)
+			both_turn = false;
+		else
+			both_turn = true;
+
+		
+		both_incoming_limit = false;
+		selectNextBoth(small_airport);
+		// We select the limit so that we try to keep queue under the magical 10 limit
+		if (small_airport.sizeOfIncomingQueueForSelection() > 9)
+			both_incoming_limit = true;
+
+		int number_arrivals = variable.poisson(arrival_rate);  //  current arrival requests
+		for (int i = 0; i < number_arrivals; i++) {
+
+			if (both_turn && !both_incoming_limit)
+				selectNextBoth(small_airport);
+			else
+				selectNextIncoming(small_airport);
+
+			Plane current_plane(flight_number++, current_time, arriving);
+			if (small_airport.can_land(current_plane) != success)
+				current_plane.refuse();
+
+		}
+		both_incoming_empty = false;
+		// Checks if multipurpose runway has empty incoming queue
+		selectNextBoth(small_airport);
+		if (small_airport.sizeOfIncomingQueueForSelection() == 0)
+			both_incoming_empty = true;
+
+		int number_departures = variable.poisson(departure_rate); //  current departure requests
+		for (int j = 0; j < number_departures; j++) {
+
+			if (both_turn && both_incoming_empty)
+				selectNextBoth(small_airport);
+			else
+				selectNextOutgoing(small_airport);
+
+			Plane current_plane(flight_number++, current_time, departing);
+			if (small_airport.can_depart(current_plane) != success)
+				current_plane.refuse();
+
 		}
 
 		Plane moving_plane[RUNWAYS];
