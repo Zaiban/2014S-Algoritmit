@@ -46,7 +46,7 @@ public:
 	*/
 	void shut_down(int time) const;
 
-private:
+protected:
 	QueueLinkedExtended<Plane> landingPlanes;
 	QueueLinkedExtended<Plane> takeoffPlanes;
 	Runway_role role_; // NEW! Added for 2 point work
