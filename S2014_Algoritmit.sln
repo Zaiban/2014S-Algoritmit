@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyClassesLib", "MyClassesLi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestClasses", "TestClasses\TestClasses.vcxproj", "{FBC867F3-D2CA-4BE7-98F0-B3A647C85E3B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SSA_TestBed", "SSA_TestBed\SSA_TestBed.vcxproj", "{0C7D8615-8B0C-4F36-8C44-E607C9DA4EAC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -39,6 +41,10 @@ Global
 		{FBC867F3-D2CA-4BE7-98F0-B3A647C85E3B}.Debug|Win32.Build.0 = Debug|Win32
 		{FBC867F3-D2CA-4BE7-98F0-B3A647C85E3B}.Release|Win32.ActiveCfg = Release|Win32
 		{FBC867F3-D2CA-4BE7-98F0-B3A647C85E3B}.Release|Win32.Build.0 = Release|Win32
+		{0C7D8615-8B0C-4F36-8C44-E607C9DA4EAC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0C7D8615-8B0C-4F36-8C44-E607C9DA4EAC}.Debug|Win32.Build.0 = Debug|Win32
+		{0C7D8615-8B0C-4F36-8C44-E607C9DA4EAC}.Release|Win32.ActiveCfg = Release|Win32
+		{0C7D8615-8B0C-4F36-8C44-E607C9DA4EAC}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

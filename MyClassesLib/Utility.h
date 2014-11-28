@@ -12,7 +12,8 @@ enum MYCLASSESLIB_EXPORT Error_code{
 	fail,
 	overflow,
 	underflow,
-	range_error
+	range_error,
+	not_present
 };
 
 #include <iostream>
