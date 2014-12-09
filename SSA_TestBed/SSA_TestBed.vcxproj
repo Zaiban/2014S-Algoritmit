@@ -44,6 +44,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)\MyClassesLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -64,7 +65,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="binary_search_1.cpp" />
+    <ClCompile Include="binary_search_2.cpp" />
+    <ClCompile Include="Key.cpp" />
+    <ClCompile Include="Ordered_list.cpp" />
+    <ClCompile Include="Record.cpp" />
+    <ClCompile Include="recursive_binary_1.cpp" />
+    <ClCompile Include="recursive_binary_2.cpp" />
+    <ClCompile Include="sequential_search.cpp" />
+    <ClCompile Include="Sortable_list.cpp" />
     <ClCompile Include="Source.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="binary_search_1.h" />
+    <ClInclude Include="binary_search_2.h" />
+    <ClInclude Include="Key.h" />
+    <ClInclude Include="Ordered_list.h" />
+    <ClInclude Include="Record.h" />
+    <ClInclude Include="recursive_binary_1.h" />
+    <ClInclude Include="recursive_binary_2.h" />
+    <ClInclude Include="sequential_search.h" />
+    <ClInclude Include="Sortable_list.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyClassesLib\MyClassesLib.vcxproj">
+      <Project>{dd5a4bca-c5c6-4e00-b7f3-eab35bce52b0}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
