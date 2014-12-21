@@ -69,9 +69,11 @@
     <ClCompile Include="binary_search_2.cpp" />
     <ClCompile Include="Key.cpp" />
     <ClCompile Include="Ordered_list.cpp" />
+    <ClCompile Include="RANDOM.CPP" />
     <ClCompile Include="Record.cpp" />
     <ClCompile Include="recursive_binary_1.cpp" />
     <ClCompile Include="recursive_binary_2.cpp" />
+    <ClCompile Include="SearchAnalyst.cpp" />
     <ClCompile Include="sequential_search.cpp" />
     <ClCompile Include="Sortable_list.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -81,9 +83,11 @@
     <ClInclude Include="binary_search_2.h" />
     <ClInclude Include="Key.h" />
     <ClInclude Include="Ordered_list.h" />
+    <ClInclude Include="RANDOM.H" />
     <ClInclude Include="Record.h" />
     <ClInclude Include="recursive_binary_1.h" />
     <ClInclude Include="recursive_binary_2.h" />
+    <ClInclude Include="SearchAnalyst.h" />
     <ClInclude Include="sequential_search.h" />
     <ClInclude Include="Sortable_list.h" />
   </ItemGroup>

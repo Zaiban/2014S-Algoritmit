@@ -1,5 +1,5 @@
 #pragma once
-#include "List.cpp"
+#include "List.h"
 #include "Record.h"
 class Sortable_list :
 	public List < Record >

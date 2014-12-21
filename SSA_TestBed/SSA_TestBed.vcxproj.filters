@@ -45,6 +45,12 @@
     <ClCompile Include="Record.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RANDOM.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SearchAnalyst.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sequential_search.h">
@@ -72,6 +78,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Record.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RANDOM.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SearchAnalyst.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
